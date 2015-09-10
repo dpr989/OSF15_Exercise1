@@ -16,4 +16,4 @@ matrix.o: matrix.c matrix.h
 	gcc matrix.c $(CFLAGS)-c
 
 clean:
-	rm -f *.o matlab temp_mat
+	rm -f *.o #matlab temp_mat

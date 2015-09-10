@@ -34,7 +34,12 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 						const unsigned int cols) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
-
+    //Check if the Matrix pointer is NULL
+    printf("\nnew_matrix=%p", (*new_matrix));
+    
+    if(!(*new_matrix)){
+		printf("\nnew_matrix=%p", (*new_matrix));
+	}
 	*new_matrix = calloc(1,sizeof(Matrix_t));
 	if (!(*new_matrix)) {
 		return false;
@@ -55,7 +60,11 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 }
 
 	//TODO FUNCTION COMMENT
-
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 void destroy_matrix (Matrix_t** m) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -68,6 +77,11 @@ void destroy_matrix (Matrix_t** m) {
 
 	
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -84,6 +98,11 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 
@@ -101,6 +120,11 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -132,6 +156,11 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -149,6 +178,11 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 void display_matrix (Matrix_t* m) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -167,6 +201,11 @@ void display_matrix (Matrix_t* m) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -300,6 +339,11 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -368,6 +412,11 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -383,6 +432,11 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 /*Protected Functions in C*/
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 void load_matrix (Matrix_t* m, unsigned int* data) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -390,6 +444,11 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 }
 
 	//TODO FUNCTION COMMENT
+	/* 
+	 * PURPOSE:  
+	 * INPUTS: 
+	 * RETURN:
+	 **/
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
