@@ -67,7 +67,9 @@ int main (int argc, char **argv) {
 	while (strncmp(line,"exit", strlen("exit")  + 1) != 0) {
 		
 		if (!parse_user_input(line,&cmd)) {
-			printf("Failed at parsing command\n\n");
+			printf("\nERROR:Failed at parsing command\n");
+			free(line);
+			return -1;
 		}
 		
 		if (cmd->num_cmds > 1) {	

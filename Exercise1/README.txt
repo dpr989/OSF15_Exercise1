@@ -40,7 +40,7 @@ get in the habit of understanding someone else's code base. If you find errors, 
 them and let the TAs know. This code is not unit tested, so expect possible undefined behavior.
 
 We are hoping that this will get you back up to speed on C. If you have questions ask the TAs
-as soon possible. This command line application contains important C knowledge for success in this 
+as soon as possible. This command line application contains important C knowledge for success in this 
 class. We will have a series of quizzes over this application. Everything is fair game on
 this application. So make sure to experiment with the code base with printf, understand new standard C functions,
 and understand that everything is binary and datatypes are placeholders for memory sizes. 
@@ -95,4 +95,4 @@ A sample output of no memory leak from your code. Commands used below included
 	==2715== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 14 from 14)
 
 As one can see, the readline library has possible memory leaks (a fair amount on OSX). In this class one of the many goals is to create
-libraries that do not have memory leaks like realine!
+libraries that do not have memory leaks like readline!

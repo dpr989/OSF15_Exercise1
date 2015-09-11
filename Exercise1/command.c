@@ -20,7 +20,16 @@
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
-
+	//Check if input string is null.
+	if(!input){
+		perror("User input string is NULL");
+		return false;
+	}
+	//Check that actual memory location is passed for *cmd and not NULL.
+	if(!cmd){
+		perror("Passed NULL pointer parse_user_input\n");
+	}
+	
 	char *string = strdup(input);
 	
 	*cmd = calloc(1,sizeof(Commands_t));
@@ -48,12 +57,16 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 	 * PURPOSE: Unallocate memory dedicated to commands.
 	 * INPUTS: 
 	 * 		   cmd : array of command_t pointers
+	 * 
 	 * RETURN: void
 	 **/
 void destroy_commands(Commands_t** cmd) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
-	
+	if(!(*cmd)){
+		printf("\nERROR:Inputed commands to be destroyed is NULL");
+		return;
+	}
 	for (int i = 0; i < (*cmd)->num_cmds; ++i) {
 		free((*cmd)->cmds[i]);
 	}

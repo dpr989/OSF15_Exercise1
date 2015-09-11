@@ -142,7 +142,6 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	}
 	
 	//Check if direction is vaild.
-	if
 	
 	//Check direction is either l or r	
 	if (direction == 'l' || direction == 'L') {
