@@ -53,7 +53,6 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Dealocates the memory of the matrix and the pointer to it. Sets the
 	 * 			pointer to the matrix to null.
@@ -65,16 +64,15 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 	 **/
 void destroy_matrix (Matrix_t** m) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(!(*m)){
+		printf("\nMatrix array empty.");
+	}
 	
 	free((*m)->data);
 	free(*m);
 	*m = NULL;
 }
 
-
-	
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Compares 2 matrices to see if they are equivalent
 	 * INPUTS: 
@@ -98,7 +96,6 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 	return false;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: To make a copy of a matrix
 	 * INPUTS: 
@@ -124,7 +121,6 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 	return equal_matrices (src,dest);
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Bit shift inputed matrix 
 	 * INPUTS: 
@@ -135,13 +131,11 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 	 **/
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
-	//Check if matrix pointer is null.
-	if (!a) {
+	//If matrix is null
+	if(!a){
+		perror("Matrix is null and cannont be shifted\n");
 		return false;
 	}
-	
-	//Check if direction is vaild.
 	
 	//Check direction is either l or r	
 	if (direction == 'l' || direction == 'L') {
@@ -162,12 +156,14 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 				a->data[i * a->cols + j] = a->data[i * a->cols + j] >> shift;
 			}
 		}
+	}else{
+		printf("\nInvalid direction to shift\n");
+		return false;
 	}
 	
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: To take 2 a,b matrices, of the same size and add them together to make a 3rd, c
 	 * INPUTS: 
@@ -195,7 +191,6 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Displays the contents of the given matrix
 	 * INPUTS: 
@@ -220,7 +215,6 @@ void display_matrix (Matrix_t* m) {
 
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Opens stored matrix file, attempts to read from file. If successful, 
 	 * 			creates a matrix and loads it into
@@ -361,7 +355,6 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: To write a matrix to a file for usage latter.
 	 * INPUTS: 
@@ -436,7 +429,6 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: To fill a given matrix with random unsigned int data between
 	 * 			a upper and lower bound set by the user. 
@@ -448,7 +440,16 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	 **/
 bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	//Check if m is null
+	if(!m){
+		printf("\nInput matrix null\n");
+		return false;
+	}
+	//Check if start_range is larger than end_range
+	if(start_range > end_range){
+		printf("\nError starting range cannot be greater than end_range");
+		return false;
+	}
 
 	for (unsigned int i = 0; i < m->rows; ++i) {
 		for (unsigned int j = 0; j < m->cols; ++j) {
@@ -460,7 +461,6 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 
 /*Protected Functions in C*/
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Loads matrix with ints from data[] 
 	 * INPUTS: 
@@ -474,7 +474,6 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 	memcpy(m->data,data,m->rows * m->cols * sizeof(unsigned int));
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Adds a matrix to the array of matrices (Matrix_t** mats) 
 	 * INPUTS: 
@@ -487,6 +486,10 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(!new_matrix){
+		perror("New matrix is null\n");
+		return (num_mats+1);
+	}
 	static long int current_position = 0;
 	const long int pos = current_position % num_mats;
 	if ( mats[pos] ) {

@@ -8,7 +8,6 @@
 #define MAX_CMD_COUNT 50
 #define MAX_CMD_LEN 25
 
- //TODO FUNCTION COMMENT
 /* 
  * PURPOSE: Breaks command input string into pieces and stores the individual commands
  * 		    into an instance Commands_t in the array of strings contained within.		
@@ -19,7 +18,6 @@
  **/	
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	//Check if input string is null.
 	if(!input){
 		perror("User input string is NULL");
@@ -52,7 +50,6 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
 	/* 
 	 * PURPOSE: Unallocate memory dedicated to commands.
 	 * INPUTS: 
@@ -62,7 +59,6 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 	 **/
 void destroy_commands(Commands_t** cmd) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	if(!(*cmd)){
 		printf("\nERROR:Inputed commands to be destroyed is NULL");
 		return;
