@@ -108,7 +108,7 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 	if (!src) {
-		printf("\nSource cannot be null.\n);
+		printf("\nSource cannot be null.\n");
 		return false;
 	}
 	/*
