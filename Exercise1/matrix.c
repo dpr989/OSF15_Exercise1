@@ -83,10 +83,10 @@ void destroy_matrix (Matrix_t** m) {
 	 **/
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
-	
-	if (!a || !b || !a->data || !b->data) {
-		return false;	
+	//Check that both matrices aren't null.
+	if(!a || !b){
+		printf("Check inputs, a matrix is null");
+		return false;
 	}
 
 	int result = memcmp(a->data,b->data, sizeof(unsigned int) * a->rows * a->cols);
@@ -107,10 +107,8 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 	 **/
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
-
 	if (!src) {
+		printf("\nSource cannot be null.\n);
 		return false;
 	}
 	/*
@@ -174,8 +172,14 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	 * RETURN: Returns boolean value indicating whether the operation
 	 **/
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
-
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	
+	//Check to see if matrices are null
+	if(!a || !b || !c){
+		printf("\nCheck inputs a matrix pointer may me null.\n");
+		return false;
+	}
+	
+	
 
 	if (a->rows != b->rows && a->cols != b->cols) {
 		printf("\nIncompatible matrix sizes:\nMatrix 1 is: %d X %d\nMatrix 2 is: %d X %d",
@@ -200,7 +204,10 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 	 **/
 void display_matrix (Matrix_t* m) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(!m){
+		printf("\nInput matrix is null\n");
+		return;
+	}
 
 
 	printf("\nMatrix Contents (%s):\n", m->name);
@@ -224,9 +231,6 @@ void display_matrix (Matrix_t* m) {
 	 * RETURN: True if matrix read successfully. False if read failed.
 	 **/
 bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
-
 
 	int fd = open(matrix_input_filename,O_RDONLY);
 	if (fd < 0) {
@@ -363,8 +367,6 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	 * RETURN: True if write successful. False if writing of matrix to file failed.
 	 **/
 bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
-	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 
 	int fd = open(matrix_output_filename, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	/* ERROR HANDLING USING errorno*/
@@ -470,7 +472,11 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 	 **/
 void load_matrix (Matrix_t* m, unsigned int* data) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(!m){
+		printf("\nMatrix null.\n");
+		return;
+	}
+	
 	memcpy(m->data,data,m->rows * m->cols * sizeof(unsigned int));
 }
 
@@ -485,7 +491,6 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
 	 **/
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
 	if(!new_matrix){
 		perror("New matrix is null\n");
 		return (num_mats+1);
