@@ -19,29 +19,40 @@ unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats,
 void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats);
 
 //TODO FUNCTION COMMENT
-	/* 
-	 * PURPOSE:  
-	 *  The main function that ties everything together and processes user input commands and calls
-	 *  the appropriate functions based on said input.
-	 * 
-	 * INPUTS: 
-	 *	int argc : is the number of commands entered when starting the program matlab
-	 * 
-	 * RETURN:
-	 *  If no errors during execution output = 0 if errors exist some other error value will be returned.
-	 *
-	 **/
+/* 
+ * PURPOSE: The main function that ties everything together and processes user input commands and calls
+ *  		the appropriate functions based on said input.
+ * 
+ * INPUTS: 
+ *	      argc : is the number of commands entered when starting the program matlab
+ * 		  argv : list of commands used to start the program
+ * 
+ * RETURN: If no errors during execution output = 0 if errors exist some other error value will be returned.
+ *
+ **/
  
 int main (int argc, char **argv) {
-	srand(time(NULL));		
-	char *line = NULL;
-	Commands_t* cmd;
-
-	Matrix_t *mats[10];
+	
+	//#Seeding pseudo-random num gen
+	  srand(time(NULL));
+	
+	//#String to store user input.  		
+	  char *line = NULL;
+	
+	//#Pointer to type command  
+	  Commands_t* cmd;
+    
+    //Create an array of Matrix_t pointers
+	  Matrix_t *mats[10];
+	
+	//&mats points to the address of mats[0], which contains a pointer to a Matrix_t
 	memset(&mats,0, sizeof(Matrix_t*) * 10); //IMPORTANT C FUNCTION TO LEARN
 
+//Example of how a matrix is created and added to list of matrices.
+	//Create example matrix?
 	Matrix_t *temp = NULL;
-	create_matrix (&temp,"temp_mat", 5, 5); //TODO ERROR CHECK
+	create_matrix(&temp,"temp_mat", 5, 5); //TODO ERROR CHECK
+	
 	add_matrix_to_array(mats,temp, 10); //TODO ERROR CHECK NEEDED
 	int mat_idx = find_matrix_given_name(mats,10,"temp_mat");
 
@@ -75,9 +86,13 @@ int main (int argc, char **argv) {
 
 	//TODO FUNCTION COMMENT
 /* 
- * PURPOSE:  
+ * PURPOSE: Parses the user input, takes the necessary steps to execute the user's
+ * 			commands.
  * INPUTS: 
- * RETURN:
+ * 		   cmd : list of commands
+ * 	       mats : list of matrices
+ * 	       num_mats : is the number of matrices in the list.
+ * RETURN: void
  **/
  
 void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
@@ -214,11 +229,12 @@ void run_commands (Commands_t* cmd, Matrix_t** mats, unsigned int num_mats) {
 
 }
 
-	//TODO FUNCTION COMMENT
-/* 
- * PURPOSE: 
+//TODO FUNCTION COMMENt  
+/* PURPOSE: Searches the array of matrices by comparing the name, given by the user to each
+ * 			matrix's name.
  * INPUTS: 
- * RETURN:
+ * 		   
+ * RETURN: Either returns the index of matrix or returns -1 to indicate that the matrix was not found.
  **/
 unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats, const char* target) {
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -235,11 +251,10 @@ unsigned int find_matrix_given_name (Matrix_t** mats, unsigned int num_mats, con
 /* 
  * PURPOSE: instantiates a new matrix with the passed name, rows, cols 
  * INPUTS:
- *  Matrix_t **mats : Pointer to the linked list of matrix pointers
- *  unsigned int num_mats : is the number of the matrices being pointed to in Matrix_t **mats
+ *        mats : pointer to the list of matrices.
+ *        num_mats : is the number of the matrices in the list.
  *
- * RETURN:
- * If no errors, returns void.
+ * RETURN: void
  **/
 void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats) {
 	

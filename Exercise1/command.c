@@ -7,11 +7,15 @@
 
 #define MAX_CMD_COUNT 50
 #define MAX_CMD_LEN 25
+
  //TODO FUNCTION COMMENT
 /* 
- * PURPOSE:  
+ * PURPOSE: Breaks command input string into pieces and stores the individual commands
+ * 		    into an instance Commands_t in the array of strings contained within.		
  * INPUTS: 
- * RETURN:
+ * 		   input : string from user of commands wanting to execute.
+ * 		   cmd : list of command pointers
+ * RETURN: True if input properly parsed and stored in instance of cmd
  **/	
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
@@ -19,7 +23,7 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 
 	char *string = strdup(input);
 	
-	*cmd = calloc (1,sizeof(Commands_t));
+	*cmd = calloc(1,sizeof(Commands_t));
 	(*cmd)->cmds = calloc(MAX_CMD_COUNT,sizeof(char*));
 
 	unsigned int i = 0;
@@ -41,9 +45,10 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 
 	//TODO FUNCTION COMMENT
 	/* 
-	 * PURPOSE:  
+	 * PURPOSE: Unallocate memory dedicated to commands.
 	 * INPUTS: 
-	 * RETURN:
+	 * 		   cmd : array of command_t pointers
+	 * RETURN: void
 	 **/
 void destroy_commands(Commands_t** cmd) {
 
